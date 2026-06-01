@@ -13,5 +13,13 @@ namespace InventoryManagementSystem.Data
 
         // This represents the Products table in the database
         public DbSet<Product> Products { get; set; }
+
+        // Precision information for decimals. Total digits = 18, Digits after dedcimal = 2.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasPrecision(18, 2);
+        }
     }
 }
